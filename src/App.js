@@ -1,24 +1,28 @@
-import logo from './logo.svg';
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import './App.css';
-
+import 'antd/dist/antd.css';
+import Main from './components/Main.jsx';
 function App() {
+
+  const client = new ApolloClient({
+    uri: "https://countries.trevorblades.com/",
+    cache: new InMemoryCache(),
+    fetchOptions: {
+      mode: 'no-cors',
+    },
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With",
+      "Access-Control-Allow-Credentials" : true
+    },
+    body: JSON.stringify(''),
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ApolloProvider client={client}>
+      <Main/>
+    </ApolloProvider>
   );
 }
 
