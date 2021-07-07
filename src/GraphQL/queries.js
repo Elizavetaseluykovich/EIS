@@ -21,11 +21,3 @@ export const get_all = gql`
     }
 `;
 
-// export const get_languages = gql`
-//     query {
-//         languages {
-//             code
-//             name
-//         }
-//     }
-// `;
